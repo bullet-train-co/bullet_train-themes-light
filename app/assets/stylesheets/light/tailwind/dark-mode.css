@@ -186,9 +186,9 @@
     }
 
     .tribute-container {
-        ul {
-            @apply bg-sealBlue-300 border-sealBlue-100 !important;
-        }
+      ul {
+        @apply bg-sealBlue-300 border-sealBlue-100 !important;
+      }
     }
 
     .trix-dialogs {
