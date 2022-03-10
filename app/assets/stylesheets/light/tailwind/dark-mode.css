@@ -197,7 +197,7 @@
 
     .trix-content {
       a[href^="bullettrain://"] {
-        @apply bg-sealBlue-300 color-white;
+        @apply bg-sealBlue-600 text-white;
       }
     }
 
