@@ -28,7 +28,7 @@
     <% end %>
 
     <% if body %>
-      <div class="<%= 'pt-7 pb-3 px-8 space-y-7' unless p.content_for?(:raw_body) %> ">
+      <div class="<%= "pt-7 px-8 space-y-7 #{p.content_for?(:actions) ? 'pb-3' : 'pb-7'}" unless p.content_for?(:raw_body) %>">
         <div class="space-y-4 <%= '-mt-4' unless divider %>">
           <%= body %>
         </div>
