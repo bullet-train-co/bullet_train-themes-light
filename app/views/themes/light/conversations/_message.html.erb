@@ -1,5 +1,6 @@
 <% new_message ||= false %>
-<% current_user_message = message.author == current_user %>
+<% current_author = defined?(current_user) ? current_user : send(BulletTrain::Conversations.current_participant_helper_method) %>
+<% current_user_message = message.author == current_author %>
 <% avatar = capture do %>
   <% if message.membership %>
     <img src="<%= membership_profile_photo_url(message.membership) %>" title="<%= message.user_name %>" alt="<%= message.user_name %>" class="w-6 h-6 rounded-full <%= current_user_message ? 'order-2' : 'order-1' %>">
@@ -36,7 +37,7 @@
 <% timestamp = next_message_in_series || show_as_thread ? '' : time_ago_in_words(message.created_at) + " ago" %>
 
 <% threaded_message = message.threaded? %>
-<% thread_started_by_current_user = message.thread_origin_user == current_user %>
+<% thread_started_by_current_user = message.thread_origin_user == current_author %>
 <% last_message_in_thread = !placeholder_message && threaded_message && (message.next_message.nil? || message.next_message.thread_id != message.thread_id)%>
 <% out_of_thread_message = !show_as_thread && threaded_message && message.reply? && message.previous_message != message.previous_message_in_thread %>
 <% has_replies = message.replies.any? && message.next_message == message.next_message_in_thread %>
