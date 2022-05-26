@@ -20,43 +20,54 @@ module.exports = {
       },
       colors: {
         red: {
-          darker: '#652424',
-          DEFAULT: '#e86060',
-          light: '#ee8989',
+          400: '#ee8989',
+          500: '#e86060',
+          900: '#652424',
         },
+
         yellow: {
-          darker: '#6e6446',
-          DEFAULT: '#fbe6a8',
-          light: '#fcedbe',
+          400: '#fcedbe',
+          500: '#fbe6a8',
+          900: '#6e6446',
         },
+
         blue: {
-          light: '#95acff',
-          lightish: '#448eef',
-          DEFAULT: '#047bf8',
-          dark: '#0362c6',
-          darker: '#00369D',
+          300: '#95acff', // light
+          400: '#448eef', // lightish
+          500: '#047bf8', // DEFAULT
+          600: '#0362c6', // dark
+          700: '#1c4cc3', // vividBlue-700
+          800: '#0e369a', // vividBlue-800
+          900: '#00369D', // darker
         },
-        green: {
-          darker: '#166e0c',
-          dark: '#1b850f',
-          DEFAULT: '#71c21a',
-          light: '#c5f0c0',
+
+        // This is a weird one-off for dark-mode.
+        lilac: {
+          200: '#b3bcde',
         },
+
+        slate: {
+          900: '#232942',
+          800: '#2b344e',
+          700: '#323c58',
+          600: '#4D566F',
+          500: '#777E94',
+          400: '#9facc7',
+          300: '#ccd9e8',
+        },
+
         sealBlue: {
-          100: '#232942',
-          200: '#293145',
-          300: '#2b344e',
-          400: '#323c58',
-          500: '#4D566F',
-          600: '#777E94',
-          700: '#9facc7',
-          800: '#b3bcde',
-          900: '#ccd9e8'
+          100: '#232942', // slate-900
+          200: '#b3bcde', // X
+          300: '#2b344e', // slate-800
+          400: '#323c58', // slate-700
+          500: '#4D566F', // slate-600
+          600: '#777E94', // slate-500
+          700: '#9facc7', // slate-400
+          800: '#b3bcde', // X
+          900: '#ccd9e8', // slate-300
         },
-        vividBlue: {
-          700: '#1c4cc3',
-          800: '#0e369a'
-        },
+
         black: {
           100: '#000000',
           200: '#101112',

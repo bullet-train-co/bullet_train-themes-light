@@ -17,9 +17,9 @@ has_errors = errors.any? || content_for(:error).present? || other_options[:error
 options[:class] = "#{options[:class]} block w-full rounded-md shadow-sm font-light text-sm"
 
 options[:class] += if has_errors
-  " pr-10 border-red text-red-darker placeholder-red focus:outline-none focus:ring-red focus:border-red dark:bg-sealBlue-300 dark:text-sealBlue-900"
+  " pr-10 border-red-500 text-red-900 placeholder-red-500 focus:outline-none focus:ring-red-500 focus:border-red-500 dark:bg-slate-800 dark:text-slate-300"
 else
-  " focus:ring-blue focus:border-blue border-gray-300 dark:bg-sealBlue-300 dark:border-sealBlue-100 dark:text-sealBlue-900"
+  " focus:ring-blue-500 focus:border-blue-500 border-gray-300 dark:bg-slate-800 dark:border-slate-900 dark:text-slate-300"
 end
 
 %>

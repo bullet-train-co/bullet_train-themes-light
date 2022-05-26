@@ -22,7 +22,7 @@ form.button_to {
   input[type=submit] {
     @apply bg-transparent;
     &.button {
-      @apply bg-blue hover:bg-blue-dark;
+      @apply bg-blue-500 hover:bg-blue-600;
     }
   }
 }

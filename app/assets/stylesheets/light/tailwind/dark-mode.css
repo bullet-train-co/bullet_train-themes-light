@@ -3,7 +3,8 @@
     /**
      * Color overrides
      **/
-    .bg-blue-darker {
+    .bg-blue-900 {
+      /* TODO We can't really do this. We need to just append a transparency class to these elements. */
       background-color: rgba(0, 0, 0, 0.15);
     }
 
@@ -18,19 +19,19 @@
      * General
      **/
     .button {
-      @apply ring-offset-sealBlue-400;
+      @apply ring-offset-slate-700;
     }
 
     .table {
       th {
-        @apply text-sealBlue-700;
+        @apply text-slate-400;
       }
 
       tbody {
         @apply border-gray-500;
 
         tr {
-          border-top: 1px solid theme('colors.sealBlue.600');
+          border-top: 1px solid theme('colors.slate.500');
         }
 
         td {
@@ -38,7 +39,7 @@
 
           a,
           input[type="submit"] {
-            @apply text-sealBlue-800;
+            @apply text-lilac-200;
           }
         }
       }
@@ -48,7 +49,7 @@
      * Form components
      **/
     .button-secondary {
-      @apply text-sealBlue-800;
+      @apply text-lilac-200;
     }
 
     .button-alternative {
@@ -64,10 +65,10 @@
      **/
     /* Color picker */
     .pcr-app {
-      @apply bg-sealBlue-300 border border-solid border-sealBlue-100;
+      @apply bg-slate-800 border border-solid border-slate-900;
 
       .pcr-interaction .pcr-result {
-        @apply text-sealBlue-900 border border-solid border-sealBlue-100 bg-sealBlue-300;
+        @apply text-slate-300 border border-solid border-slate-900 bg-slate-800;
 
         &:focus {
           box-shadow: 0 0 0 1px theme('colors.blue.500'), 0 0 0 3px theme('colors.blue.500');
@@ -77,18 +78,18 @@
 
     /* Date range picker */
     .daterangepicker {
-      @apply bg-sealBlue-300 border-sealBlue-100;
+      @apply bg-slate-800 border-slate-900;
 
       &::before {
-        border-bottom-color: theme('colors.sealBlue.100');
+        border-bottom-color: theme('colors.slate.900');
       }
 
       &::after {
-        border-bottom-color: theme('colors.sealBlue.300');
+        border-bottom-color: theme('colors.slate.800');
       }
 
       .calendar-table {
-        @apply bg-sealBlue-300 text-sealBlue-900;
+        @apply bg-slate-800 text-slate-300;
 
         /* navigation arrows */
         .available {
@@ -100,53 +101,53 @@
 
       /* Clear and Apply buttons wrapper */
       .drp-buttons {
-        border-top-color: theme('colors.sealBlue.100');
-        @apply text-sealBlue-900;
+        border-top-color: theme('colors.slate.900');
+        @apply text-slate-300;
       }
 
       th {
         &.available:hover {
-          @apply bg-sealBlue-500;
+          @apply bg-slate-600;
         }
       }
 
       td {
         &.off {
-          @apply bg-sealBlue-300 text-white;
+          @apply bg-slate-800 text-white;
         }
 
         &.available:hover {
-          @apply bg-sealBlue-500;
+          @apply bg-slate-600;
         }
       }
 
       .hourselect, .minuteselect, .ampmselect {
-        @apply text-sealBlue-900 border-sealBlue-100 bg-sealBlue-300 !important;
+        @apply text-slate-300 border-slate-900 bg-slate-800 !important;
       }
     }
 
     /* Phone field */
     .iti__country-list {
-      @apply bg-sealBlue-300 border border-solid border-sealBlue-100;
+      @apply bg-slate-800 border border-solid border-slate-900;
     }
 
     /* Select2 */
     .select2-container {
       .select2-selection__rendered {
-        @apply text-sealBlue-900 !important;
+        @apply text-slate-300 !important;
       }
 
       .select2-dropdown {
-        @apply bg-sealBlue-400;
+        @apply bg-slate-700;
       }
 
       .select2-search__field {
-        @apply bg-sealBlue-300 border-sealBlue-100 !important;
+        @apply bg-slate-800 border-slate-900 !important;
       }
 
       .select2-selection--multiple, .select2-selection--single {
-        @apply bg-sealBlue-300 focus:ring-blue border-sealBlue-100 !important;
-        @apply text-sealBlue-900;
+        @apply bg-slate-800 focus:ring-blue-500 border-slate-900 !important;
+        @apply text-slate-300;
       }
 
       /* For the selected options in the multiple select2 component */
@@ -164,48 +165,48 @@
       }
 
       .select2-results__option {
-        @apply text-sealBlue-900;
+        @apply text-slate-300;
       }
     }
 
     /* Trix Editor */
     trix-editor {
-      @apply bg-sealBlue-300 border-sealBlue-100 !important;
+      @apply bg-slate-800 border-slate-900 !important;
 
       &:focus, &:active {
-        @apply border-blue !important;
+        @apply border-blue-500 !important;
       }
     }
 
     trix-toolbar {
       .trix-button-group, .trix-button {
-        @apply border-sealBlue-100 !important;
+        @apply border-slate-900 !important;
       }
     }
 
     .tribute-container {
       ul {
-        @apply bg-sealBlue-300 border-sealBlue-100 !important;
+        @apply bg-slate-800 border-slate-900 !important;
       }
     }
 
     .trix-dialogs {
-      @apply bg-sealBlue-300 border-sealBlue-100 !important;
+      @apply bg-slate-800 border-slate-900 !important;
     }
 
     .trix-content {
       a[href^="bullettrain://"] {
-        @apply bg-sealBlue-600 text-white;
+        @apply bg-slate-500 text-white;
       }
     }
 
     /* CKEditor */
     .ck {
-      --ck-color-base-background: theme('colors.sealBlue.300');
-      --ck-color-base-border: theme('colors.sealBlue.100');
-      --ck-color-toolbar-background: theme('colors.sealBlue.200');
-      --ck-color-toolbar-border: theme('colors.sealBlue.100');
-      --ck-color-text: theme('colors.sealBlue.900');
+      --ck-color-base-background: theme('colors.slate.800');
+      --ck-color-base-border: theme('colors.slate.900');
+      --ck-color-toolbar-background: theme('colors.slate.800');
+      --ck-color-toolbar-border: theme('colors.slate.900');
+      --ck-color-text: theme('colors.slate.300');
 
       .ck-editor__editable:not(.ck-editor__nested-editable) {
         @apply shadow-none;
