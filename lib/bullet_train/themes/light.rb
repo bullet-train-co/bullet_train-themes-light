@@ -10,7 +10,7 @@ module BulletTrain
 
       class Theme < BulletTrain::Themes::TailwindCss::Theme
         def directory_order
-          ['light'] + super
+          ["light"] + super
         end
       end
     end
