@@ -31,24 +31,24 @@ module.exports = {
           900: '#6e6446',
         },
 
-        blue: {
-          300: '#95acff',
-          400: '#448eef',
-          500: '#047bf8',
-          600: '#0362c6',
-          700: '#1c4cc3',
-          800: '#0e369a',
-          900: '#00369D',
+        primary: {
+          300: 'var(--primary-300)',
+          400: 'var(--primary-400)',
+          500: 'var(--primary-500)',
+          600: 'var(--primary-600)',
+          700: 'var(--primary-700)',
+          800: 'var(--primary-800)',
+          900: 'var(--primary-900)',
         },
 
-        slate: {
-          300: '#ccd9e8',
-          400: '#9facc7',
-          500: '#777E94',
-          600: '#4D566F',
-          700: '#323c58',
-          800: '#2b344e',
-          900: '#232942',
+        darkPrimary: {
+          300: 'var(--dark-primary-300)',
+          400: 'var(--dark-primary-400)',
+          500: 'var(--dark-primary-500)',
+          600: 'var(--dark-primary-600)',
+          700: 'var(--dark-primary-700)',
+          800: 'var(--dark-primary-800)',
+          900: 'var(--dark-primary-900)',
         },
 
         // This is a weird one-off for dark-mode.
