@@ -42,9 +42,9 @@
 
   --dark-accent-200: #bcb3de;
 
-  --light-gradient-from: #D7EABB;
+  --light-gradient-from: #EABBD7;
   --light-gradient-to: #A865F1;
-  --dark-gradient-from: #3d7d63;
+  --dark-gradient-from: #7d3d63;
   --dark-gradient-to: #6728ab;
 }
 
@@ -93,8 +93,8 @@
 
   --dark-accent-200: #bcb3de;
 
-  --light-gradient-from: #EABBD7;
+  --light-gradient-from: #D7BBEA;
   --light-gradient-to: #F165A8;
-  --dark-gradient-from: #7d3d63;
-  --dark-gradient-to: #6728ab;
+  --dark-gradient-from: #6728ab;
+  --dark-gradient-to: #633d7d;
 }
