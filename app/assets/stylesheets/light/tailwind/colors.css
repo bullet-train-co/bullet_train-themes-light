@@ -15,20 +15,12 @@
   --dark-primary-800: #2b344e;
   --dark-primary-900: #232942;
 
+  --dark-accent-200: #b3bcde;
+
   --light-gradient-from: #D7BBEA;
   --light-gradient-to: #65A8F1;
   --dark-gradient-from: #633d7d;
   --dark-gradient-to: #2867ab;
-}
-
-.theme-green {
-  --primary-300: #95ffac;
-  --primary-400: #44ef8e;
-  --primary-500: #05d544;
-  --primary-600: #03c662;
-  --primary-700: #1cc34c;
-  --primary-800: #0e9a36;
-  --primary-900: #009D36;
 }
 
 .theme-purple {
@@ -39,6 +31,21 @@
   --primary-700: #4c1cc3;
   --primary-800: #360e9a;
   --primary-900: #36009D;
+
+  --dark-primary-300: #d9cce8;
+  --dark-primary-400: #ac9fc7;
+  --dark-primary-500: #7E7794;
+  --dark-primary-600: #564D6F;
+  --dark-primary-700: #3c3258;
+  --dark-primary-800: #342b4e;
+  --dark-primary-900: #292342;
+
+  --dark-accent-200: #bcb3de;
+
+  --light-gradient-from: #D7EABB;
+  --light-gradient-to: #A865F1;
+  --dark-gradient-from: #3d7d63;
+  --dark-gradient-to: #6728ab;
 }
 
 .theme-orange {
@@ -49,6 +56,22 @@
   --primary-700: #c34c1c;
   --primary-800: #9a360e;
   --primary-900: #9D3600;
+
+  /* TOOD Kind of yuck? */
+  --dark-primary-300: #e8d9cc;
+  --dark-primary-400: #c7ac9f;
+  --dark-primary-500: #947E77;
+  --dark-primary-600: #6F564D;
+  --dark-primary-700: #583c32;
+  --dark-primary-800: #4e342b;
+  --dark-primary-900: #422923;
+
+  --dark-accent-200: #debcb3;
+
+  --light-gradient-from: #EABBD7;
+  --light-gradient-to: #F1A865;
+  --dark-gradient-from: #7d3d63;
+  --dark-gradient-to: #ab6728;
 }
 
 .theme-pink {
@@ -67,6 +90,8 @@
   --dark-primary-700: #3c3258;
   --dark-primary-800: #342b4e;
   --dark-primary-900: #292342;
+
+  --dark-accent-200: #bcb3de;
 
   --light-gradient-from: #EABBD7;
   --light-gradient-to: #F165A8;

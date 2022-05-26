@@ -39,7 +39,7 @@
 
           a,
           input[type="submit"] {
-            @apply text-lilac-200;
+            @apply text-darkAccent-200;
           }
         }
       }
@@ -49,7 +49,7 @@
      * Form components
      **/
     .button-secondary {
-      @apply text-lilac-200;
+      @apply text-darkAccent-200;
     }
 
     .button-alternative {

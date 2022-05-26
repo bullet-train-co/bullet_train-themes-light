@@ -52,8 +52,8 @@ module.exports = {
         },
 
         // This is a weird one-off for dark-mode.
-        lilac: {
-          200: '#b3bcde',
+        darkAccent: {
+          200: 'var(--dark-accent-200)',
         },
 
         black: {
