@@ -48,6 +48,54 @@ namespace :bullet_train do
 
         puts "You must restart `bin/dev` at this point, because of the changes to `Procfile.dev` and `package.json`."
       end
+
+      desc "Publish your custom theme theme as a Ruby gem."
+      task :release, [:theme_name] => :environment do |task, args|
+        puts "Preparing to release your custom theme: #{blue(args[:theme_name])}"
+        puts ""
+        puts blue "Before we make a new Ruby gem for your theme, you'll have to set up a GitHub repository first."
+        puts blue "Hit <Return> and we'll open a browser to GitHub where you can create a new repository."
+        puts blue "When you're done, copy the SSH path from the new repository and return here."
+        ask "We'll ask you to paste it to us in the next step."
+        `#{Gem::Platform.local.os == "linux" ? "xdg-open" : "open"} https://github.com/new`
+
+        ssh_path = ask "OK, what was the SSH path? (It should look like `git@github.com:your-account/your-new-repo.git`.)"
+        puts "Great, you're all set."
+        puts "We'll take it from here, so sit back and enjoy the ride 🚄️"
+        puts ""
+        puts "Creating a Ruby gem for #{blue args[:theme_name]}..."
+
+        Dir.mkdir("local") unless Dir.exists?("./local")
+        unless Dir.exsts?("./local/bullet_train-themes-#{args[:theme_name]}")
+          `git clone git@github.com:bullet-train-co/bullet_train-themes-light.git ./local/bullet_train-themes-#{args[:theme_name]}`
+        end
+
+        custom_file_replacer = BulletTrain::Themes::Light::CustomThemeFileReplacer.new(args[:theme_name])
+        custom_file_replacer.replace_theme("light", args[:theme_name])
+
+        # TODO: Push all changes to GitHub and publish the gem.
+      end
+
+      def red(string)
+        "\e[1;31m#{string}\e[0m"
+      end
+
+      def green(string)
+        "\e[1;32m#{string}\e[0m"
+      end
+
+      def blue(string)
+        "\e[1;34m#{string}\e[0m"
+      end
+
+      def yellow(string)
+        "\e[1;33m#{string}\e[0m"
+      end
+
+      def ask(string)
+        puts blue string
+        return STDIN.gets.strip
+      end
     end
   end
 end
