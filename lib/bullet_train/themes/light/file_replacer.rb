@@ -12,10 +12,6 @@ module BulletTrain
         def self.replace_content(old:, new:)
           File.open(old, "w") { |f| f.write(File.open(new).readlines.join("")) }
         end
-
-        def self.replace_target_string(regexp:, content:)
-          # TODO: Read through each line in the file and replace
-        end
       end
     end
   end
