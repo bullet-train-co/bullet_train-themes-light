@@ -66,7 +66,7 @@ namespace :bullet_train do
         puts "Creating a Ruby gem for #{blue args[:theme_name]}..."
 
         Dir.mkdir("local") unless Dir.exists?("./local")
-        unless Dir.exsts?("./local/bullet_train-themes-#{args[:theme_name]}")
+        unless Dir.exists?("./local/bullet_train-themes-#{args[:theme_name]}")
           `git clone git@github.com:bullet-train-co/bullet_train-themes-light.git ./local/bullet_train-themes-#{args[:theme_name]}`
         end
 
