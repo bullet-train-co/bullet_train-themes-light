@@ -73,7 +73,22 @@ namespace :bullet_train do
         custom_file_replacer = BulletTrain::Themes::Light::CustomThemeFileReplacer.new(args[:theme_name])
         custom_file_replacer.replace_theme("light", args[:theme_name])
 
-        # TODO: Push all changes to GitHub and publish the gem.
+        work_tree_flag = "--work-tree=local/bullet_train-themes-#{custom_theme}"
+        git_dir_flag = "--git-dir=local/bullet_train-themes-#{custom_theme}/.git"
+
+        # Set up the proper remote
+        `git #{work_tree_flag} #{git_dir_flag} remote set-url origin #{ssh_path}`
+
+        # Push changes
+        `git #{work_tree_flag} #{git_dir_flag} add .`
+        `git #{work_tree_flag} #{git_dir_flag} commit -m "Update files with proper naming"`
+        `git #{work_tree_flag} #{git_dir_flag} push -u origin main`
+
+        # Add to the new gem to the main application.
+        `bundle add bullet_train-themes-#{custom_theme}`
+
+        puts "You're all set!"
+        puts "Be sure to change the settings in your main application if you want to use another theme."
       end
 
       def red(string)
