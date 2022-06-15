@@ -96,9 +96,29 @@ module BulletTrain
           # Since we're generating a new gem, it should be version 1.0
           File.open("#{@repo_path}/lib/bullet_train/themes/#{custom_theme}/version.rb", "r") do |file|
             new_lines = file.readlines
-            new_lines = new_lines.map {|line | line.match?("VERSION") ? "      VERSION = \"1.0\"\n" : line}
+            new_lines = new_lines.map { |line| line.match?("VERSION") ? "      VERSION = \"1.0\"\n" : line }
           end
           File.open("#{@repo_path}/lib/bullet_train/themes/#{custom_theme}/version.rb", "w") do |file|
+            file.puts new_lines.join
+          end
+
+          # Update the author and email.
+          # If the developer hasn't set these yet, this should simply return empty strings.
+          author = `git config --global user.name`.chomp
+          email = `git config --global user.email`.chomp
+          File.open("#{@repo_path}/bullet_train-themes-#{custom_theme}.gemspec", "r") do |file|
+            new_lines = file.readlines
+            new_lines = new_lines.map do |line|
+              if line.match?("spec.authors")
+                "  spec.authors = [\"#{author}\"]\n"
+              elsif line.match?("spec.email")
+                "  spec.email = [\"#{email}\"]\n"
+              else
+                line
+              end
+            end
+          end
+          File.open("#{@repo_path}/bullet_train-themes-#{custom_theme}.gemspec", "w") do |file|
             file.puts new_lines.join
           end
         end
