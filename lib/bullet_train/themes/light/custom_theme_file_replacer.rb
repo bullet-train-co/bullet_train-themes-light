@@ -13,10 +13,10 @@ module BulletTrain
         def replace_theme(original_theme, custom_theme)
           # Rename the directories
           [
-            "#{@repo_path}/app/assets/stylesheets/#{original_theme}/",
-            "#{@repo_path}/app/views/themes/#{original_theme}/",
-            "#{@repo_path}/lib/bullet_train/themes/#{original_theme}/"
-          ].each do |original_directory|
+            "/app/assets/stylesheets/#{original_theme}/",
+            "/app/views/themes/#{original_theme}/",
+            "/lib/bullet_train/themes/#{original_theme}/"
+          ].map { |file| @repo_path + file }.each do |original_directory|
             custom_directory = original_directory.gsub(/(.*)(#{original_theme})(\/$)/, '\1' + custom_theme + '\3')
             FileUtils.mv(original_directory, custom_directory)
           end
@@ -51,16 +51,16 @@ module BulletTrain
           constantized_original = constantize_from_snake_case(original_theme)
           constantized_custom = constantize_from_snake_case(custom_theme)
           [
-            "#{@repo_path}/app/assets/stylesheets/#{custom_theme}.tailwind.css",
-            "#{@repo_path}/bin/rails",
-            "#{@repo_path}/lib/bullet_train/themes/#{custom_theme}/engine.rb",
-            "#{@repo_path}/lib/bullet_train/themes/#{custom_theme}/version.rb",
-            "#{@repo_path}/lib/bullet_train/themes/#{custom_theme}.rb",
-            "#{@repo_path}/lib/tasks/bullet_train/themes/#{custom_theme}_tasks.rake",
-            "#{@repo_path}/bullet_train-themes-#{custom_theme}.gemspec",
-            "#{@repo_path}/Gemfile",
-            "#{@repo_path}/README.md"
-          ].each do |file|
+            "/app/assets/stylesheets/#{custom_theme}.tailwind.css",
+            "/bin/rails",
+            "/lib/bullet_train/themes/#{custom_theme}/engine.rb",
+            "/lib/bullet_train/themes/#{custom_theme}/version.rb",
+            "/lib/bullet_train/themes/#{custom_theme}.rb",
+            "/lib/tasks/bullet_train/themes/#{custom_theme}_tasks.rake",
+            "/bullet_train-themes-#{custom_theme}.gemspec",
+            "/Gemfile",
+            "/README.md"
+          ].map { |file| @repo_path + file}.each do |file|
             new_lines = []
             File.open(file, "r") do |f|
               new_lines = f.readlines
@@ -109,29 +109,19 @@ module BulletTrain
         # the custom theme name, but the FILE names are still the same from when they were cloned,
         # so we use `original_theme` for specific file names below.
         def ejected_files_to_replace(original_theme, custom_theme)
-          files = []
+          files = [
+            Dir.glob("#{@repo_path}/app/assets/stylesheets/#{custom_theme}/**/*.css"),
+            Dir.glob("#{@repo_path}/app/assets/stylesheets/#{custom_theme}/**/*.scss"),
+            Dir.glob("#{@repo_path}/app/views/themes/#{custom_theme}/**/*.html.erb"),
+            "/app/javascript/application.#{original_theme}.js",
+            "/tailwind.#{original_theme}.config.js",
+            "/app/lib/bullet_train/themes/#{original_theme}.rb",
+            # The Glob up top doesn't grab the #{original_theme}.tailwind.css file, so we set that here.
+            "/app/assets/stylesheets/#{original_theme}.tailwind.css",
 
-          # Stylesheets
-          files << Dir.glob("#{@repo_path}/app/assets/stylesheets/#{custom_theme}/**/*.css")
-          files << Dir.glob("#{@repo_path}/app/assets/stylesheets/#{custom_theme}/**/*.scss")
-
-          # Views
-          files << Dir.glob("#{@repo_path}/app/views/themes/#{custom_theme}/**/*.html.erb")
-
-          # JavaScript
-          files << "#{@repo_path}/app/javascript/application.#{original_theme}.js"
-          files << "#{@repo_path}/tailwind.#{original_theme}.config.js"
-
-          # File which determines the directory order.
-          files << "#{@repo_path}/app/lib/bullet_train/themes/#{original_theme}.rb"
-
-          # The Glob up top doesn't grab the #{original_theme}.tailwind.css file, so we set that here.
-          files << "#{@repo_path}/app/assets/stylesheets/#{original_theme}.tailwind.css"
-
-          # TODO: We currently don't eject the mailer config when running the eject rake task.
-          # files << "#{repo_path}/tailwind.mailer.#{original_theme}.config.js"
-
-          files.flatten
+            # TODO: We currently don't eject the mailer config when running the eject rake task.
+            # "/tailwind.mailer.#{original_theme}.config.js"
+          ].flatten.map { |file| file.match?(/^#{@repo_path}/) ? file : @repo_path + file }
         end
 
         # These files represent ones such as "./lib/bullet_train/themes/light.rb" which
@@ -139,10 +129,10 @@ module BulletTrain
         def default_files_to_replace(original_theme)
           # TODO: Add this file and the FileReplacer module once they're added to the main branch.
           [
-            "#{@repo_path}/bullet_train-themes-#{original_theme}.gemspec",
-            "#{@repo_path}/app/assets/config/bullet_train_themes_#{original_theme}_manifest.js",
-            "#{@repo_path}/lib/tasks/bullet_train/themes/#{original_theme}_tasks.rake"
-          ]
+            "/bullet_train-themes-#{original_theme}.gemspec",
+            "/app/assets/config/bullet_train_themes_#{original_theme}_manifest.js",
+            "/lib/tasks/bullet_train/themes/#{original_theme}_tasks.rake"
+          ].map { |file| @repo_path + file }
         end
         
         # Since we're cloning a fresh gem, file names that contain the original
