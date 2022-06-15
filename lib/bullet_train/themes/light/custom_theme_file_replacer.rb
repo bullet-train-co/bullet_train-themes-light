@@ -13,6 +13,7 @@ module BulletTrain
         def replace_theme(original_theme, custom_theme)
           # Rename the directories
           [
+            "/app/assets/stylesheets/bullet_train/themes/#{original_theme}/",
             "/app/assets/stylesheets/#{original_theme}/",
             "/app/views/themes/#{original_theme}/",
             "/lib/bullet_train/themes/#{original_theme}/"
@@ -52,20 +53,29 @@ module BulletTrain
           constantized_custom = constantize_from_snake_case(custom_theme)
           [
             "/app/assets/stylesheets/#{custom_theme}.tailwind.css",
+            "/app/views/themes/#{custom_theme}/layouts/_account.html.erb",
+            "/app/views/themes/#{custom_theme}/layouts/_devise.html.erb",
             "/bin/rails",
             "/lib/bullet_train/themes/#{custom_theme}/engine.rb",
             "/lib/bullet_train/themes/#{custom_theme}/version.rb",
             "/lib/bullet_train/themes/#{custom_theme}.rb",
             "/lib/tasks/bullet_train/themes/#{custom_theme}_tasks.rake",
+            "/test/bullet_train/themes/#{custom_theme}_test.rb",
+            "/test/dummy/app/views/layouts/mailer.html.erb",
+            "/test/dummy/config/application.rb",
             "/bullet_train-themes-#{custom_theme}.gemspec",
             "/Gemfile",
             "/README.md"
-          ].map { |file| @repo_path + file}.each do |file|
+          ].map { |file| @repo_path + file }.each do |file|
             new_lines = []
             File.open(file, "r") do |f|
               new_lines = f.readlines
               new_lines.each do |line|
-                line.gsub!(original_theme, custom_theme)
+                # `_account.html.erb` and `_devise.html.erb` have tailwind classes that contain `light`.
+                # We shouldn't be replacing the classes with the custom theme string, so we skip it here.
+                # TODO: We should change this Regexp to check if the original theme is prefixed with `-`.
+                # If it is, we ignore the string if it's not prefixed with `bullet_train-themes-`,
+                line.gsub!(original_theme, custom_theme) unless line.match?("bg-light-gradient")
                 line.gsub!(constantized_original, constantized_custom)
               end
             end
@@ -151,7 +161,8 @@ module BulletTrain
           [
             "/bullet_train-themes-#{original_theme}.gemspec",
             "/app/assets/config/bullet_train_themes_#{original_theme}_manifest.js",
-            "/lib/tasks/bullet_train/themes/#{original_theme}_tasks.rake"
+            "/lib/tasks/bullet_train/themes/#{original_theme}_tasks.rake",
+            "/test/bullet_train/themes/#{original_theme}_test.rb"
           ].map { |file| @repo_path + file }
         end
         
