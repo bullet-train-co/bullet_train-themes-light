@@ -89,9 +89,17 @@ module BulletTrain
               RUBY
             new_lines.unshift(require_lines)
           end
-
           File.open("#{@repo_path}/lib/bullet_train/themes/#{custom_theme}.rb", "w") do |file|
             file.puts new_lines.flatten.join
+          end
+
+          # Since we're generating a new gem, it should be version 1.0
+          File.open("#{@repo_path}/lib/bullet_train/themes/#{custom_theme}/version.rb", "r") do |file|
+            new_lines = file.readlines
+            new_lines = new_lines.map {|line | line.match?("VERSION") ? "      VERSION = \"1.0\"\n" : line}
+          end
+          File.open("#{@repo_path}/lib/bullet_train/themes/#{custom_theme}/version.rb", "w") do |file|
+            file.puts new_lines.join
           end
         end
 
