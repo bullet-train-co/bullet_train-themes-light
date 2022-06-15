@@ -112,6 +112,12 @@ module BulletTrain
             file.puts new_lines.join
           end
 
+          # Remove files and directories from the main application.
+          files_to_remove_from_main_app(custom_theme).each { |file| File.delete(file) }
+          directories_to_remove_from_main_app(custom_theme).each do |directory|
+            FileUtils.rm_rf(directory) unless directory.nil?
+          end
+
           # Update the author and email.
           # If the developer hasn't set these yet, this should simply return empty strings.
           author = `git config --global user.name`.chomp
@@ -164,6 +170,25 @@ module BulletTrain
             "/lib/tasks/bullet_train/themes/#{original_theme}_tasks.rake",
             "/test/bullet_train/themes/#{original_theme}_test.rb"
           ].map { |file| @repo_path + file }
+        end
+
+        def files_to_remove_from_main_app(custom_theme)
+          [
+            Dir.glob("./app/assets/stylesheets/#{custom_theme}/**/*.css"),
+            Dir.glob("./app/assets/stylesheets/#{custom_theme}/**/*.scss"),
+            "./app/assets/stylesheets/#{custom_theme}.tailwind.css",
+            "./app/javascript/application.#{custom_theme}.js",
+            "./app/lib/bullet_train/themes/#{custom_theme}.rb", # Delete every directory here up until app
+            Dir.glob("./app/views/themes/#{custom_theme}/**/*.html.erb")
+          ].flatten
+        end
+
+        def directories_to_remove_from_main_app(custom_theme)
+          [
+            "./app/assets/stylesheets/#{custom_theme}/",
+            "./app/views/themes/#{custom_theme}/",
+            "./app/lib/"
+          ].map { |directory| directory unless directory == "./app/lib/" && Dir.empty?(directory) }
         end
         
         # Since we're cloning a fresh gem, file names that contain the original
