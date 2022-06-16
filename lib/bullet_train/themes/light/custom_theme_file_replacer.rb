@@ -13,6 +13,7 @@ module BulletTrain
         def replace_theme(original_theme, custom_theme)
           # Rename the directories
           [
+            "/app/assets/stylesheets/bullet_train/themes/#{original_theme}/",
             "/app/assets/stylesheets/#{original_theme}/",
             "/app/views/themes/#{original_theme}/",
             "/lib/bullet_train/themes/#{original_theme}/"
