@@ -87,7 +87,7 @@ namespace :bullet_train do
         `(cd #{path} && gem build bullet_train-themes-#{args[:theme_name]}.gemspec)`
         `git #{work_tree_flag} #{git_dir_flag} add .`
         `git #{work_tree_flag} #{git_dir_flag} commit -m "Build gem"`
-        `git #{work_tree_flag} #{git_dir_flag} push -u origin main`
+        # `git #{work_tree_flag} #{git_dir_flag} push -u origin main`
 
         puts ""
         puts ""
