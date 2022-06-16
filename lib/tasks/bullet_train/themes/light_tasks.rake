@@ -78,22 +78,19 @@ namespace :bullet_train do
         git_dir_flag = "--git-dir=local/bullet_train-themes-#{args[:theme_name]}/.git"
         path = "./local/bullet_train-themes-#{args[:theme_name]}"
 
-        # Set up the proper remote
+        # Set up the proper remote.
         `git #{work_tree_flag} #{git_dir_flag} remote set-url origin #{ssh_path}`
         `git #{work_tree_flag} #{git_dir_flag} add .`
         `git #{work_tree_flag} #{git_dir_flag} commit -m "Add initial files"`
 
+        # Build and release the gem.
         `(cd #{path} && gem build bullet_train-themes-#{args[:theme_name]}.gemspec)`
         `git #{work_tree_flag} #{git_dir_flag} add .`
         `git #{work_tree_flag} #{git_dir_flag} commit -m "Build gem"`
+        `(cd #{path} && gem push bullet_train-themes-#{args[:theme_name]}-1.0.gem)`
 
-        `(cd #{path} && bundle install)`
-        `git #{work_tree_flag} #{git_dir_flag} add .`
-        `git #{work_tree_flag} #{git_dir_flag} commit -m "Bundle install"`
-        # `git #{work_tree_flag} #{git_dir_flag} push -u origin main`
-
-        puts "You're all set!"
-        puts "Be sure to change the settings in your main application if you want to use another theme."
+        puts blue "You're all set!"
+        puts blue "Be sure to change the settings in your main application if you want to use another theme."
       end
 
       def red(string)
