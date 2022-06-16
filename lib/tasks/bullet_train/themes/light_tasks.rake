@@ -87,7 +87,6 @@ namespace :bullet_train do
         `(cd #{path} && gem build bullet_train-themes-#{args[:theme_name]}.gemspec)`
         `git #{work_tree_flag} #{git_dir_flag} add .`
         `git #{work_tree_flag} #{git_dir_flag} commit -m "Build gem"`
-        `(cd #{path} && gem push bullet_train-themes-#{args[:theme_name]}-1.0.gem)`
 
         puts blue "You're all set! Just copy and paste the following commands to get your gem up and running:"
         puts "\tcd .local/bullet_train-themes#{args[:theme_name]} && \\"
