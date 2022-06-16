@@ -87,16 +87,19 @@ namespace :bullet_train do
         `(cd #{path} && gem build bullet_train-themes-#{args[:theme_name]}.gemspec)`
         `git #{work_tree_flag} #{git_dir_flag} add .`
         `git #{work_tree_flag} #{git_dir_flag} commit -m "Build gem"`
+        `git #{work_tree_flag} #{git_dir_flag} push -u origin main`
 
         puts ""
         puts ""
-        puts blue "You're all set! Just copy and paste the following commands to get your gem up and running:"
-        puts "cd .local/bullet_train-themes-#{args[:theme_name]} && \\"
-        puts "gem push bullet_train-themes-#{args[:theme_name]}-1.0.gem && \\"
-        puts "cd ../../ && \\"
+        puts blue "You're all set! Copy and paste the following commands to publish your gem:"
+        puts "cd .local/bullet_train-themes-#{args[:theme_name]}"
+        puts "gem push bullet_train-themes-#{args[:theme_name]}-1.0.gem"
+        puts ""
+        puts "You may have to wait for some time until the gem can be download your gem via the Gemfile."
+        puts "After a few minutes, run the following command in your main application:"
         puts "bundle add bullet_train-themes-#{args[:theme_name]}"
         puts ""
-        puts blue "Be sure to change the settings in your main application if you want to use another theme."
+        puts blue "Now you're ready to use your custom gem in your Bullet Train application."
       end
 
       def red(string)
