@@ -83,7 +83,7 @@ namespace :bullet_train do
         `git #{work_tree_flag} #{git_dir_flag} add .`
         `git #{work_tree_flag} #{git_dir_flag} commit -m "Add initial files"`
 
-        # Build and release the gem.
+        # Build the gem.
         `(cd #{path} && gem build bullet_train-themes-#{args[:theme_name]}.gemspec)`
         `git #{work_tree_flag} #{git_dir_flag} add .`
         `git #{work_tree_flag} #{git_dir_flag} commit -m "Build gem"`
@@ -92,7 +92,7 @@ namespace :bullet_train do
         puts ""
         puts ""
         puts blue "You're all set! Copy and paste the following commands to publish your gem:"
-        puts "cd .local/bullet_train-themes-#{args[:theme_name]}"
+        puts "cd ./local/bullet_train-themes-#{args[:theme_name]}"
         puts "gem push bullet_train-themes-#{args[:theme_name]}-1.0.gem"
         puts ""
         puts "You may have to wait for some time until the gem can be download your gem via the Gemfile."
