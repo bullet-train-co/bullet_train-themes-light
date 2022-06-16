@@ -70,12 +70,17 @@ module BulletTrain
             File.open(file, "r") do |f|
               new_lines = f.readlines
               new_lines.each do |line|
-                # `_account.html.erb` and `_devise.html.erb` have tailwind classes that contain `light`.
-                # We shouldn't be replacing the classes with the custom theme string, so we skip it here.
-                # TODO: We should change this Regexp to check if the original theme is prefixed with `-`.
-                # If it is, we ignore the string if it's not prefixed with `bullet_train-themes-`,
-                line.gsub!(original_theme, custom_theme) unless line.match?("bg-light-gradient")
-                line.gsub!(constantized_original, constantized_custom)
+                # We want the original theme it's being edited from when creating a new theme.
+                if File.basename(f) == "#{custom_theme}.rb" && line.match?("class Theme < BulletTrain::Themes::")
+                  "      class Theme < BulletTrain::Themes::#{constantize_from_snake_case(original_theme)}::Theme"
+                else
+                  # `_account.html.erb` and `_devise.html.erb` have tailwind classes that contain `light`.
+                  # We shouldn't be replacing the classes with the custom theme string, so we skip it here.
+                  # TODO: We should change this Regexp to check if the original theme is prefixed with `-`.
+                  # If it is, we ignore the string if it's not prefixed with `bullet_train-themes-`,
+                  line.gsub!(original_theme, custom_theme) unless line.match?("bg-light-gradient")
+                  line.gsub!(constantized_original, constantized_custom)
+                end
               end
             end
 
@@ -93,7 +98,7 @@ module BulletTrain
               <<~RUBY
                 require "bullet_train/themes/#{custom_theme}/version"
                 require "bullet_train/themes/#{custom_theme}/engine"
-                require "bullet_train/themes/tailwind_css"
+                require "bullet_train/themes/#{original_theme}"
 
               RUBY
             new_lines.unshift(require_lines)

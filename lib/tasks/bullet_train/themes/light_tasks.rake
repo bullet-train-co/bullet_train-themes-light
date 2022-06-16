@@ -51,41 +51,55 @@ namespace :bullet_train do
 
       desc "Publish your custom theme theme as a Ruby gem."
       task :release, [:theme_name] => :environment do |task, args|
-        puts "Preparing to release your custom theme: #{blue(args[:theme_name])}"
+        puts blue("Preparing to release your custom theme: ") + args[:theme_name]
         puts ""
         puts blue "Before we make a new Ruby gem for your theme, you'll have to set up a GitHub repository first."
         puts blue "Hit <Return> and we'll open a browser to GitHub where you can create a new repository."
+        puts blue("Make sure you name the repository ") + "bullet_train-themes-#{args[:theme_name]}"
+        puts ""
         puts blue "When you're done, copy the SSH path from the new repository and return here."
         ask "We'll ask you to paste it to us in the next step."
         `#{Gem::Platform.local.os == "linux" ? "xdg-open" : "open"} https://github.com/new`
 
         ssh_path = ask "OK, what was the SSH path? (It should look like `git@github.com:your-account/your-new-repo.git`.)"
+        puts ""
         puts "Great, you're all set."
         puts "We'll take it from here, so sit back and enjoy the ride 🚄️"
         puts ""
         puts "Creating a Ruby gem for #{blue args[:theme_name]}..."
 
         Dir.mkdir("local") unless Dir.exists?("./local")
-        unless Dir.exists?("./local/bullet_train-themes-#{args[:theme_name]}")
-          `git clone git@github.com:bullet-train-co/bullet_train-themes-light.git ./local/bullet_train-themes-#{args[:theme_name]}`
-        end
+        `git clone git@github.com:bullet-train-co/bullet_train-themes-light.git ./local/bullet_train-themes-#{args[:theme_name]}`
 
         custom_file_replacer = BulletTrain::Themes::Light::CustomThemeFileReplacer.new(args[:theme_name])
         custom_file_replacer.replace_theme("light", args[:theme_name])
 
-        work_tree_flag = "--work-tree=local/bullet_train-themes-#{custom_theme}"
-        git_dir_flag = "--git-dir=local/bullet_train-themes-#{custom_theme}/.git"
+        work_tree_flag = "--work-tree=local/bullet_train-themes-#{args[:theme_name]}"
+        git_dir_flag = "--git-dir=local/bullet_train-themes-#{args[:theme_name]}/.git"
+        path = "./local/bullet_train-themes-#{args[:theme_name]}"
 
         # Set up the proper remote
         `git #{work_tree_flag} #{git_dir_flag} remote set-url origin #{ssh_path}`
-
-        # Push changes
         `git #{work_tree_flag} #{git_dir_flag} add .`
-        `git #{work_tree_flag} #{git_dir_flag} commit -m "Update files with proper naming"`
+        `git #{work_tree_flag} #{git_dir_flag} commit -m "Add initial files"`
+
+        `(cd #{path} && gem build bullet_train-themes-#{args[:theme_name]}.gemspec)`
+        `git #{work_tree_flag} #{git_dir_flag} add .`
+        `git #{work_tree_flag} #{git_dir_flag} commit -m "Build gem"`
+
+        `(cd #{path} && bundle install)`
+        `git #{work_tree_flag} #{git_dir_flag} add .`
+        `git #{work_tree_flag} #{git_dir_flag} commit -m "Bundle install"`
         `git #{work_tree_flag} #{git_dir_flag} push -u origin main`
 
+        # We won't be able to publish the gem if we have other uncommited files, but we won't push here.
+        `git add .`
+        `git commit -m "Remove #{args[:theme_name]} theme from main application"`
+
+        `(cd #{path} && bundle exec rake release)`
+
         # Add to the new gem to the main application.
-        `bundle add bullet_train-themes-#{custom_theme}`
+        `bundle add bullet_train-themes-#{args[:theme_name]}`
 
         puts "You're all set!"
         puts "Be sure to change the settings in your main application if you want to use another theme."
