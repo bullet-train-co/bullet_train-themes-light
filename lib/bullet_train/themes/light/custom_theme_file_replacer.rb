@@ -72,8 +72,10 @@ module BulletTrain
               new_lines.each do |line|
                 # We want the original theme it's being edited from when creating a new theme.
                 if File.basename(f) == "#{custom_theme}.rb" && line.match?("class Theme < BulletTrain::Themes::")
-                  "      mattr_accessor :color, default: :blue\n\n" +
-                  "      class Theme < BulletTrain::Themes::#{constantize_from_snake_case(original_theme)}::Theme\n"
+                  <<~RUBY
+                        mattr_accessor :color, default: :blue
+                        class Theme < BulletTrain::Themes::#{constantize_from_snake_case(original_theme)}::Theme
+                  RUBY
                 else
                   # `_account.html.erb` and `_devise.html.erb` have tailwind classes that contain `light`.
                   # We shouldn't be replacing the classes with the custom theme string, so we skip it here.
