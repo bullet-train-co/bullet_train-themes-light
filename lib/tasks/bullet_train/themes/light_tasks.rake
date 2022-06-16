@@ -90,7 +90,7 @@ namespace :bullet_train do
         `(cd #{path} && bundle install)`
         `git #{work_tree_flag} #{git_dir_flag} add .`
         `git #{work_tree_flag} #{git_dir_flag} commit -m "Bundle install"`
-        `git #{work_tree_flag} #{git_dir_flag} push -u origin main`
+        # `git #{work_tree_flag} #{git_dir_flag} push -u origin main`
 
         # We won't be able to publish the gem if we have other uncommited files, but we won't push here.
         `git add .`
