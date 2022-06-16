@@ -92,15 +92,6 @@ namespace :bullet_train do
         `git #{work_tree_flag} #{git_dir_flag} commit -m "Bundle install"`
         # `git #{work_tree_flag} #{git_dir_flag} push -u origin main`
 
-        # We won't be able to publish the gem if we have other uncommited files, but we won't push here.
-        `git add .`
-        `git commit -m "Remove #{args[:theme_name]} theme from main application"`
-
-        `(cd #{path} && bundle exec rake release)`
-
-        # Add to the new gem to the main application.
-        `bundle add bullet_train-themes-#{args[:theme_name]}`
-
         puts "You're all set!"
         puts "Be sure to change the settings in your main application if you want to use another theme."
       end
