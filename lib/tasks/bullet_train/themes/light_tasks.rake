@@ -66,7 +66,7 @@ namespace :bullet_train do
         puts "Great, you're all set."
         puts "We'll take it from here, so sit back and enjoy the ride 🚄️"
         puts ""
-        puts "Creating a Ruby gem for #{blue args[:theme_name]}..."
+        puts blue("Creating a Ruby gem for ") + "#{args[:theme_name]}..."
 
         Dir.mkdir("local") unless Dir.exists?("./local")
         `git clone git@github.com:bullet-train-co/bullet_train-themes-light.git ./local/bullet_train-themes-#{args[:theme_name]}`
@@ -97,9 +97,9 @@ namespace :bullet_train do
         puts ""
         puts blue "You may have to wait for some time until the gem can be download your gem via the Gemfile."
         puts blue "After a few minutes, run the following command in your main application:"
-        puts blue "bundle add bullet_train-themes-#{args[:theme_name]}"
+        puts "bundle add bullet_train-themes-#{args[:theme_name]}"
         puts ""
-        puts blue "Now you're ready to use your custom gem in your Bullet Train application."
+        puts blue "Then you'll be ready to use your custom gem in your Bullet Train application."
       end
 
       def red(string)
