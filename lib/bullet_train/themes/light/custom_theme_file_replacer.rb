@@ -70,13 +70,11 @@ module BulletTrain
             new_lines = []
             File.open(file, "r") do |f|
               new_lines = f.readlines
-              new_lines.each do |line|
+              new_lines = new_lines.map do |line|
                 # We want the original theme it's being edited from when creating a new theme.
-                if File.basename(f) == "#{custom_theme}.rb" && line.match?("class Theme < BulletTrain::Themes::")
-                  <<~RUBY
-                        mattr_accessor :color, default: :blue
-                        class Theme < BulletTrain::Themes::#{constantize_from_snake_case(original_theme)}::Theme
-                  RUBY
+                # We also remove mattr_accessor in the eject task, so we need to add it back here.
+                if f.path == "#{@repo_path}/lib/bullet_train/themes/#{custom_theme}.rb" && line.match?("class Theme < BulletTrain::Themes::")
+                  line = "      mattr_accessor :color, default: :blue\n      class Theme < BulletTrain::Themes::#{constantize_from_snake_case(original_theme)}::Theme\n"
                 else
                   # `_account.html.erb` and `_devise.html.erb` have tailwind classes that contain `light`.
                   # We shouldn't be replacing the classes with the custom theme string, so we skip it here.
@@ -85,6 +83,7 @@ module BulletTrain
                   line.gsub!(original_theme, custom_theme) unless line.match?("bg-light-gradient")
                   line.gsub!(constantized_original, constantized_custom)
                 end
+                line
               end
             end
 
