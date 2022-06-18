@@ -120,7 +120,7 @@ jobs:
           command: |
             cd tmp/starter
             export RAILS_ENV=test
-            bundle exec rails "knapsack_pro:queue:minitest[--verbose]"
+            SKIP_RESOLVE_TEST=1 bundle exec rails "knapsack_pro:queue:minitest[--verbose]"
           environment:
             KNAPSACK_PRO_CI_NODE_TOTAL: 16
 
