@@ -11,6 +11,7 @@ namespace :bullet_train do
 
         puts "Ejecting Tailwind mailer configuration into `./tailwind.mailer.#{args[:destination]}.config.js`."
         `cp #{theme_base_path}/tailwind.mailer.light.config.js #{Rails.root}/tailwind.mailer.#{args[:destination]}.config.js`
+        `sed -i #{'""' if `echo $OSTYPE`.include?("darwin")} "s/light/#{args[:destination]}/g" #{Rails.root}/tailwind.mailer.#{args[:destination]}.config.js`
 
         puts "Ejecting stylesheets into `./app/assets/stylesheets/#{args[:destination]}`."
         `mkdir #{Rails.root}/app/assets/stylesheets`
