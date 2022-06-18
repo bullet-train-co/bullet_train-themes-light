@@ -35,7 +35,7 @@ namespace :bullet_train do
 
         # Stub out the class that represents this theme and establishes its inheritance structure.
         target_path = "#{Rails.root}/app/lib/bullet_train/themes/#{args[:destination]}.rb"
-        puts "Stubbing out a class that represents this theme in `./#{target_path}`."
+        puts "Stubbing out a class that represents this theme in `.#{target_path}`."
         `mkdir -p #{Rails.root}/app/lib/bullet_train/themes`
         `cp #{theme_base_path}/lib/bullet_train/themes/light.rb #{target_path}`
         `sed -i #{'""' if `echo $OSTYPE`.include?("darwin")} "s/module Light/module #{args[:destination].titlecase}/g" #{target_path}`
