@@ -9,6 +9,9 @@ namespace :bullet_train do
         puts "Ejecting Tailwind configuration into `./tailwind.#{args[:destination]}.config.js`."
         `cp #{theme_base_path}/tailwind.light.config.js #{Rails.root}/tailwind.#{args[:destination]}.config.js`
 
+        puts "Ejecting Tailwind mailer configuration into `./tailwind.mailer.#{args[:destination]}.config.js`."
+        `cp #{theme_base_path}/tailwind.mailer.light.config.js #{Rails.root}/tailwind.mailer.#{args[:destination]}.config.js`
+
         puts "Ejecting stylesheets into `./app/assets/stylesheets/#{args[:destination]}`."
         `mkdir #{Rails.root}/app/assets/stylesheets`
         `cp -R #{theme_base_path}/app/assets/stylesheets/light #{Rails.root}/app/assets/stylesheets/#{args[:destination]}`
