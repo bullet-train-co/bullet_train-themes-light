@@ -161,9 +161,7 @@ module BulletTrain
             "/app/lib/bullet_train/themes/#{original_theme}.rb",
             # The Glob up top doesn't grab the #{original_theme}.tailwind.css file, so we set that here.
             "/app/assets/stylesheets/#{original_theme}.tailwind.css",
-
-            # TODO: We currently don't eject the mailer config when running the eject rake task.
-            # "/tailwind.mailer.#{original_theme}.config.js"
+            "/tailwind.mailer.#{original_theme}.config.js"
           ].flatten.map { |file| file.match?(/^#{@repo_path}/) ? file : @repo_path + file }
         end
 
