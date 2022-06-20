@@ -10,7 +10,7 @@ module BulletTrain
 
         # Replaces the old content with a brand new file.
         def self.replace_content(old:, new:)
-          File.open(old, "w") { |f| f.write(File.open(new).readlines.join("")) }
+          File.write(old, File.open(new).readlines.join(""))
         end
       end
     end

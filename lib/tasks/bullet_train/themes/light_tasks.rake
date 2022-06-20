@@ -72,10 +72,10 @@ namespace :bullet_train do
         puts ""
         puts "Creating a Ruby gem for ".blue + "#{args[:theme_name]}..."
 
-        Dir.mkdir("local") unless Dir.exists?("./local")
-        if Dir.exists?("./local/bullet_train-themes-#{args[:theme_name]}")
-          raise "You already have a repository named `bullet_train-themes-#{args[:theme_name]}` in `./local`.\n" +
-                "Make sure you delete it first to create an entirely new gem."
+        Dir.mkdir("local") unless Dir.exist?("./local")
+        if Dir.exist?("./local/bullet_train-themes-#{args[:theme_name]}")
+          raise "You already have a repository named `bullet_train-themes-#{args[:theme_name]}` in `./local`.\n" \
+            "Make sure you delete it first to create an entirely new gem."
         end
         `git clone git@github.com:bullet-train-co/bullet_train-themes-light.git ./local/bullet_train-themes-#{args[:theme_name]}`
 
@@ -154,7 +154,7 @@ namespace :bullet_train do
 
       def ask(string)
         puts string.blue
-        return STDIN.gets.strip
+        $stdin.gets.strip
       end
     end
   end

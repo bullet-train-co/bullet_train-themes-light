@@ -23,7 +23,7 @@ module BulletTrain
           end
 
           # Only compare ejected files.
-          files_to_replace = 
+          files_to_replace =
             ejected_files_to_replace(original_theme, custom_theme).map { |file| {file_name: file, must_compare: true} } +
             default_files_to_replace(original_theme).map { |file| {file_name: file, must_compare: false} }
 
@@ -40,7 +40,7 @@ module BulletTrain
             end
 
             # Only rename file names that still have the original theme in them, i.e. - ./tailwind.config.light.js
-            if(File.basename(custom_gem_file[:file_name]).match?(original_theme))
+            if File.basename(custom_gem_file[:file_name]).match?(original_theme)
               main_app_file = adjust_directory_hierarchy(main_app_file, custom_theme)
               new_file_name = main_app_file.gsub(/^\./, @repo_path).gsub(original_theme, custom_theme)
               File.rename(custom_gem_file[:file_name], new_file_name)
@@ -137,7 +137,7 @@ module BulletTrain
         # the custom theme name, but the FILE names are still the same from when they were cloned,
         # so we use `original_theme` for specific file names below.
         def ejected_files_to_replace(original_theme, custom_theme)
-          files = [
+          [
             Dir.glob("#{@repo_path}/app/assets/stylesheets/#{custom_theme}/**/*.css"),
             Dir.glob("#{@repo_path}/app/assets/stylesheets/#{custom_theme}/**/*.scss"),
             Dir.glob("#{@repo_path}/app/views/themes/#{custom_theme}/**/*.html.erb"),
@@ -199,14 +199,14 @@ module BulletTrain
             "./app/lib/"
           ].map { |directory| directory unless directory == "./app/lib/" && Dir.empty?(directory) }
         end
-        
+
         # Since we're cloning a fresh gem, file names that contain the original
         # theme stay the same, i.e. - tailwind.light.config.js. However, the names have
         # already been changed in the main app when the original theme was ejected.
         # Here, we build the correct string that is in the main app to compare the
         # files' contents. Then later on we actually rename the new gem's file names.
         def build_main_app_file_name(original_theme, custom_theme, main_app_file, custom_gem_file)
-          custom_gem_file_hierarchy = main_app_file.split(/\//)
+          custom_gem_file_hierarchy = main_app_file.split("/")
           if custom_gem_file_hierarchy.last.match?(original_theme)
             custom_gem_file_hierarchy.last.gsub!(original_theme, custom_theme)
             main_app_file = custom_gem_file_hierarchy.join("/")
