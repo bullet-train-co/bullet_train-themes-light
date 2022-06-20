@@ -55,24 +55,28 @@ namespace :bullet_train do
 
       desc "Publish your custom theme theme as a Ruby gem."
       task :release, [:theme_name] => :environment do |task, args|
-        puts blue("Preparing to release your custom theme: ") + args[:theme_name]
+        puts "Preparing to release your custom theme: ".blue + args[:theme_name]
         puts ""
-        puts blue "Before we make a new Ruby gem for your theme, you'll have to set up a GitHub repository first."
-        puts blue "Hit <Return> and we'll open a browser to GitHub where you can create a new repository."
-        puts blue("Make sure you name the repository ") + "bullet_train-themes-#{args[:theme_name]}"
+        puts "Before we make a new Ruby gem for your theme, you'll have to set up a GitHub repository first.".blue
+        puts "Hit <Return> and we'll open a browser to GitHub where you can create a new repository.".blue
+        puts "Make sure you name the repository ".blue + "bullet_train-themes-#{args[:theme_name]}"
         puts ""
-        puts blue "When you're done, copy the SSH path from the new repository and return here."
+        puts "When you're done, copy the SSH path from the new repository and return here.".blue
         ask "We'll ask you to paste it to us in the next step."
         `#{Gem::Platform.local.os == "linux" ? "xdg-open" : "open"} https://github.com/new`
 
         ssh_path = ask "OK, what was the SSH path? (It should look like `git@github.com:your-account/your-new-repo.git`.)"
         puts ""
-        puts "Great, you're all set."
-        puts "We'll take it from here, so sit back and enjoy the ride 🚄️"
+        puts "Great, you're all set.".blue
+        puts "We'll take it from here, so sit back and enjoy the ride 🚄️".blue
         puts ""
-        puts blue("Creating a Ruby gem for ") + "#{args[:theme_name]}..."
+        puts "Creating a Ruby gem for ".blue + "#{args[:theme_name]}..."
 
         Dir.mkdir("local") unless Dir.exists?("./local")
+        if Dir.exists?("./local/bullet_train-themes-#{args[:theme_name]}")
+          raise "You already have a repository named `bullet_train-themes-#{args[:theme_name]}` in `./local`.\n" +
+                "Make sure you delete it first to create an entirely new gem."
+        end
         `git clone git@github.com:bullet-train-co/bullet_train-themes-light.git ./local/bullet_train-themes-#{args[:theme_name]}`
 
         custom_file_replacer = BulletTrain::Themes::Light::CustomThemeFileReplacer.new(args[:theme_name])
@@ -94,22 +98,22 @@ namespace :bullet_train do
 
         # Commit the deleted files on the main application.
         `git add .`
-        `git commit -m "Remove #{args[:theme_name]} files from application`
+        `git commit -m "Remove #{args[:theme_name]} files from application"`
 
         # Push the gem's source code, but not the last commit in the main application.
         `git #{work_tree_flag} #{git_dir_flag} push -u origin main`
 
         puts ""
         puts ""
-        puts blue "You're all set! Copy and paste the following commands to publish your gem:"
+        puts "You're all set! Copy and paste the following commands to publish your gem:".blue
         puts "cd ./local/bullet_train-themes-#{args[:theme_name]}"
         puts "gem push bullet_train-themes-#{args[:theme_name]}-1.0.gem && cd ../../"
         puts ""
-        puts blue "You may have to wait for some time until the gem can be downloaded via the Gemfile."
-        puts blue "After a few minutes, run the following command in your main application:"
+        puts "You may have to wait for some time until the gem can be downloaded via the Gemfile.".blue
+        puts "After a few minutes, run the following command in your main application:".blue
         puts "bundle add bullet_train-themes-#{args[:theme_name]}"
         puts ""
-        puts blue "Then you'll be ready to use your custom gem in your Bullet Train application."
+        puts "Then you'll be ready to use your custom gem in your Bullet Train application.".blue
       end
 
       desc "Install this theme to your main application."
@@ -148,24 +152,8 @@ namespace :bullet_train do
         end
       end
 
-      def red(string)
-        "\e[1;31m#{string}\e[0m"
-      end
-
-      def green(string)
-        "\e[1;32m#{string}\e[0m"
-      end
-
-      def blue(string)
-        "\e[1;34m#{string}\e[0m"
-      end
-
-      def yellow(string)
-        "\e[1;33m#{string}\e[0m"
-      end
-
       def ask(string)
-        puts blue string
+        puts string.blue
         return STDIN.gets.strip
       end
     end

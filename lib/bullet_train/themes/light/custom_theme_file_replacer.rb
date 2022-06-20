@@ -51,22 +51,7 @@ module BulletTrain
           # i.e. - `module Light` and `tailwind.light.config`.
           constantized_original = constantize_from_snake_case(original_theme)
           constantized_custom = constantize_from_snake_case(custom_theme)
-          [
-            "/app/assets/stylesheets/#{custom_theme}.tailwind.css",
-            "/app/views/themes/#{custom_theme}/layouts/_account.html.erb",
-            "/app/views/themes/#{custom_theme}/layouts/_devise.html.erb",
-            "/bin/rails",
-            "/lib/bullet_train/themes/#{custom_theme}/engine.rb",
-            "/lib/bullet_train/themes/#{custom_theme}/version.rb",
-            "/lib/bullet_train/themes/#{custom_theme}.rb",
-            "/lib/tasks/bullet_train/themes/#{custom_theme}_tasks.rake",
-            "/test/bullet_train/themes/#{custom_theme}_test.rb",
-            "/test/dummy/app/views/layouts/mailer.html.erb",
-            "/test/dummy/config/application.rb",
-            "/bullet_train-themes-#{custom_theme}.gemspec",
-            "/Gemfile",
-            "/README.md"
-          ].map { |file| @repo_path + file }.each do |file|
+          files_whose_contents_need_to_be_replaced(custom_theme).each do |file|
             new_lines = []
             File.open(file, "r") do |f|
               new_lines = f.readlines
@@ -186,6 +171,25 @@ module BulletTrain
             "./app/lib/bullet_train/themes/#{custom_theme}.rb",
             Dir.glob("./app/views/themes/#{custom_theme}/**/*.html.erb")
           ].flatten
+        end
+
+        def files_whose_contents_need_to_be_replaced(custom_theme)
+          [
+            "/app/assets/stylesheets/#{custom_theme}.tailwind.css",
+            "/app/views/themes/#{custom_theme}/layouts/_account.html.erb",
+            "/app/views/themes/#{custom_theme}/layouts/_devise.html.erb",
+            "/bin/rails",
+            "/lib/bullet_train/themes/#{custom_theme}/engine.rb",
+            "/lib/bullet_train/themes/#{custom_theme}/version.rb",
+            "/lib/bullet_train/themes/#{custom_theme}.rb",
+            "/lib/tasks/bullet_train/themes/#{custom_theme}_tasks.rake",
+            "/test/bullet_train/themes/#{custom_theme}_test.rb",
+            "/test/dummy/app/views/layouts/mailer.html.erb",
+            "/test/dummy/config/application.rb",
+            "/bullet_train-themes-#{custom_theme}.gemspec",
+            "/Gemfile",
+            "/README.md"
+          ].map { |file| @repo_path + file }
         end
 
         def directories_to_remove_from_main_app(custom_theme)
