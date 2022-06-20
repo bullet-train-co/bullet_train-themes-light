@@ -183,7 +183,7 @@ module BulletTrain
             Dir.glob("./app/assets/stylesheets/#{custom_theme}/**/*.scss"),
             "./app/assets/stylesheets/#{custom_theme}.tailwind.css",
             "./app/javascript/application.#{custom_theme}.js",
-            "./app/lib/bullet_train/themes/#{custom_theme}.rb", # Delete every directory here up until app
+            "./app/lib/bullet_train/themes/#{custom_theme}.rb",
             Dir.glob("./app/views/themes/#{custom_theme}/**/*.html.erb")
           ].flatten
         end
