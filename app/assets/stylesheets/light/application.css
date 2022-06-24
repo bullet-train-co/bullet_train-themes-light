@@ -4,6 +4,7 @@
 @import "./tailwind/colors";
 
 @import "./electron";
+@import './devise';
 @import './fields';
 @import './turn';
 
