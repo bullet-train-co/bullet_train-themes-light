@@ -30,8 +30,7 @@ module BulletTrain
           # Replace the file contents and rename the files.
           files_to_replace.each do |custom_gem_file|
             # All of the files we want to compare against the fresh gem are in the main app.
-            main_app_file = custom_gem_file[:file_name].gsub(@repo_path, ".")
-            main_app_file = build_main_app_file_name(original_theme, custom_theme, main_app_file, custom_gem_file[:file_name])
+            main_app_file = build_main_app_file_name(original_theme, custom_theme, custom_gem_file[:file_name].gsub(@repo_path, "."))
             custom_gem_file[:file_name] = adjust_directory_hierarchy(custom_gem_file[:file_name], original_theme)
 
             # The content in the main app should replace the cloned gem files.
@@ -131,8 +130,6 @@ module BulletTrain
           end
         end
 
-        private
-
         # By the time we call this method we have already updated the new gem's directories with
         # the custom theme name, but the FILE names are still the same from when they were cloned,
         # so we use `original_theme` for specific file names below.
@@ -205,8 +202,9 @@ module BulletTrain
         # already been changed in the main app when the original theme was ejected.
         # Here, we build the correct string that is in the main app to compare the
         # files' contents. Then later on we actually rename the new gem's file names.
-        def build_main_app_file_name(original_theme, custom_theme, main_app_file, custom_gem_file)
-          custom_gem_file_hierarchy = main_app_file.split("/")
+        def build_main_app_file_name(original_theme, custom_theme, custom_gem_file)
+          main_app_file = custom_gem_file
+          custom_gem_file_hierarchy = custom_gem_file.split("/")
           if custom_gem_file_hierarchy.last.match?(original_theme)
             custom_gem_file_hierarchy.last.gsub!(original_theme, custom_theme)
             main_app_file = custom_gem_file_hierarchy.join("/")
