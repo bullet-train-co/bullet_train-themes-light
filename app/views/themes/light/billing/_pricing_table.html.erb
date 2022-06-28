@@ -45,21 +45,23 @@
         </div>
         <div class="my-12 mx-12">
           <h3 class="text-xs uppercase font-semibold tracking-widest">Description</h3>
-          <p class="text-base mt-3 text-gray-500">Get started with Bullet Train on your very first project.</p>
+          <p class="text-base mt-3 text-gray-500"><%= price.product.description %></p>
 
           <h3 class="mt-8 text-xs uppercase font-semibold tracking-widest">Details</h3>
-          <ul class="text-base mt-5 text-gray-500 space-y-3">
-            <% 5.times do %>
-              <li class="flex items-start">
-                <div class="flex-shrink-0 text-green-500">
-                  <i class="ti ti-check fas fa-check"></i>
-                </div>
-                <p class="ml-3">
-                  This is a feature with some words and wrapping.
-                </p>
-              </li>
-            <% end %>
-          </ul>
+          <% if price.product.features %>
+            <ul class="text-base mt-5 text-gray-500 space-y-3">
+              <% price.product.features.each do |feature| %>
+                <li class="flex items-start">
+                  <div class="flex-shrink-0 text-green-500">
+                    <i class="ti ti-check fas fa-check"></i>
+                  </div>
+                  <p class="ml-3">
+                    <%= feature.html_safe %>
+                  </p>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
         </div>
       </div>
     <% end %>
