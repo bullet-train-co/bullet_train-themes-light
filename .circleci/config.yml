@@ -207,7 +207,7 @@ jobs:
       - run: "cd tmp/starter && yarn build:css"
 
       # Eject theme to Starter Repo
-      - run: "cd tmp/starter && rake bullet_train:themes:light:eject[test_theme]"
+      - run: "cd tmp/starter && rake bullet_train:themes:light:eject[foo]"
 
       - *wait_for_docker
 
