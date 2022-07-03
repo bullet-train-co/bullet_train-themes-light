@@ -26,4 +26,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", ">= 6.0.0"
   spec.add_dependency "bullet_train-themes-tailwind_css"
+  spec.add_dependency "nice_partials", ">= 0.1.7"
 end
