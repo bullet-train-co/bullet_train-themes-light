@@ -19,6 +19,7 @@
 
             <div class="lg:hidden absolute right-0">
               <button class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white dark:ring-transparent"
+                id="mobile-menu-close"
                 data-action="reveal#hide"
               >
                 <span class="sr-only">Close Application Menu</span>
@@ -56,6 +57,7 @@
 
         <div class="lg:hidden hidden"
           data-mobile-menu-target="wrapper"
+          id="mobile-menu-backdrop"
 
           data-controller="reveal"
           data-reveal-away-value="true"
@@ -110,6 +112,7 @@
           <main class="flex-1 relative z-0 focus:outline-none" tabindex="0">
             <div class="flex flex-row items-center shadow-sm electron-draggable">
               <button class="mobile-menu-trigger lg:hidden h-12 w-12 ml-1 flex-none inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+                id="mobile-menu-open"
                 data-action="mobile-menu#toggle"
               >
                 <span class="sr-only">Open Application Menu</span>
