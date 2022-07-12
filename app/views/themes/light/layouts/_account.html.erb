@@ -9,8 +9,6 @@
       <div class="h-screen md:h-auto overflow-hidden md:rounded-lg flex shadow main-container"
         data-controller="mobile-menu"
         data-mobile-menu-hidden-class="hidden"
-        data-mobile-menu-show-event-name-value="mobile-menu:show"
-        data-mobile-menu-hide-event-name-value="mobile-menu:hide"
       >
 
         <% menu = capture do %>
@@ -60,55 +58,34 @@
           id="mobile-menu-backdrop"
         >
           <div class="fixed inset-0 flex z-40">
-            <div class="absolute inset-0"
+            <button
+              data-mobile-menu-target="revealable"
+              data-action="mobile-menu#close"
+            
+              data-transition-enter="transition-opacity ease-linear duration-200"
+              data-transition-enter-start="opacity-0"
+              data-transition-enter-end="opacity-100"
+              data-transition-leave="transition-opacity ease-linear duration-200"
+              data-transition-leave-start="opacity-100"
+              data-transition-leave-end="opacity-0"
+
+              class="hidden fixed inset-0" aria-hidden="true"
+            >
+              <div class="absolute inset-0 bg-light-gradient opacity-75"></div>
+            </button>
+            <div
               data-mobile-menu-target="revealable"
               
-              data-controller="reveal"
-              
-              data-action="mobile-menu:show->reveal#show mobile-menu:hide->reveal#hide  reveal:hidden->mobile-menu#finishClosing
-              reveal:shown->mobile-menu#finishOpening"
+              data-transition-enter="transition ease-in-out duration-200 transform"
+              data-transition-enter-start="-trandarkPrimary-x-full"
+              data-transition-enter-end="trandarkPrimary-x-0"
+              data-transition-leave="transition ease-in-out duration-200 transform"
+              data-transition-leave-start="trandarkPrimary-x-0"
+              data-transition-leave-end="-trandarkPrimary-x-full"
+
+              class="hidden relative flex-1 flex flex-col max-w-xs w-full pb-4 bg-dark-gradient shadow-xl"
             >
-              <button
-                data-action="mobile-menu#close"
-              
-                hidden
-                data-reveal
-                data-transition
-                data-transition-enter="transition-opacity ease-linear duration-200"
-                data-transition-enter-start="opacity-0"
-                data-transition-enter-end="opacity-100"
-                data-transition-leave="transition-opacity ease-linear duration-200"
-                data-transition-leave-start="opacity-100"
-                data-transition-leave-end="opacity-0"
-  
-                class="fixed inset-0" aria-hidden="true"
-              >
-                <div class="absolute inset-0 bg-light-gradient opacity-75"></div>
-              </button>
-            </div>
-            <div class=""
-              data-mobile-menu-target="revealable"
-              
-              data-controller="reveal"
-              
-              data-action="mobile-menu:show->reveal#show mobile-menu:hide->reveal#hide  reveal:hidden->mobile-menu#finishClosing
-              reveal:shown->mobile-menu#finishOpening"
-            >
-              <div
-                hidden
-                data-reveal
-                data-transition
-                data-transition-enter="transition ease-in-out duration-200 transform"
-                data-transition-enter-start="-trandarkPrimary-x-full"
-                data-transition-enter-end="trandarkPrimary-x-0"
-                data-transition-leave="transition ease-in-out duration-200 transform"
-                data-transition-leave-start="trandarkPrimary-x-0"
-                data-transition-leave-end="-trandarkPrimary-x-full"
-  
-                class="relative flex-1 flex flex-col max-w-xs w-full pb-4 bg-dark-gradient shadow-xl"
-              >
-                <%= menu %>
-              </div>
+              <%= menu %>
             </div>
             <div class="flex-shrink-0 w-14" aria-hidden="true"></div>
           </div>
@@ -123,7 +100,7 @@
         <div class="flex flex-col w-0 flex-1 overflow-y-auto bg-gray-100 dark:bg-darkPrimary-800 lg:border-l dark:border-gray-500">
           <main class="flex-1 relative z-0 focus:outline-none" tabindex="0">
             <div class="flex flex-row items-center shadow-sm electron-draggable">
-              <button class="mobile-menu-trigger lg:hidden h-12 w-12 ml-1 flex-none inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              <button class="lg:hidden h-12 w-12 ml-1 flex-none inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
                 id="mobile-menu-open"
                 data-action="mobile-menu#open"
               >
