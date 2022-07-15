@@ -102,7 +102,7 @@ jobs:
 
       - *wait_for_docker
 
-      - bullet_train-testing/starter_repo_minitest:
+      - bullet_train_testing/starter_repo_minitest:
           packageName: bullet_train-themes-light
           knapsackPro: false
 
