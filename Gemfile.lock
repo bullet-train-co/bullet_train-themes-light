@@ -352,6 +352,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3
   standard
+  thor (~> 1.2.1)
 
 BUNDLED WITH
    2.2.22
