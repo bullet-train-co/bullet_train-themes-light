@@ -17,7 +17,7 @@ has_errors = errors.any? || content_for(:error).present? || other_options[:error
 options[:class] = "#{options[:class]} block w-full rounded-md shadow-sm font-light text-sm"
 
 options[:class] += if has_errors
-  " pr-10 border-red-600 text-red-600 placeholder-red-600 focus:outline-none focus:ring-red-500 focus:border-red-500 dark:bg-darkPrimary-800 dark:text-darkPrimary-300"
+  " pr-10 border-red-500 text-red-900 placeholder-red-500 focus:outline-none focus:ring-red-500 focus:border-red-500 dark:bg-darkPrimary-800 dark:text-darkPrimary-300"
 else
   " focus:ring-primary-500 focus:border-primary-500 border-gray-300 dark:bg-darkPrimary-800 dark:border-darkPrimary-900 dark:text-darkPrimary-300"
 end
@@ -53,7 +53,7 @@ end
 
   <% # any error messages. %>
   <% if has_errors %>
-    <p class="mt-1.5 text-xs text-red-600">
+    <p class="mt-1.5 text-xs text-red">
       <%= errors.map { |error| error + ". " }.join %>
       <%= yield :error %>
       <% flush_content_for :error %>
