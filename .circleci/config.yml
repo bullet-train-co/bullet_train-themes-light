@@ -104,8 +104,7 @@ jobs:
 
       - bullet_train_testing/starter_repo_minitest:
           packageName: bullet_train-themes-light
-          # Uncomment this line if you want to run tests linearly.
-          # knapsackPro: false
+          knapsackPro: true
 
       # If you want to gather test results in CircleCI when not running tests in parallel,
       # include `minitest-ci` in your Gemfile and uncomment the following step.
@@ -134,8 +133,7 @@ jobs:
 
       - bullet_train_testing/starter_repo_super_scaffolding:
           packageName: bullet_train-themes-light
-          # Uncomment this line if you want to run tests linearly.
-          # knapsackPro: false
+          knapsackPro: true
 
 workflows:
   version: 2
