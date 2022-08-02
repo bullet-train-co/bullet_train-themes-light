@@ -92,6 +92,20 @@ module BulletTrain
           end
         end
       end
+
+      def self.clean_theme(task_name, args)
+        theme_name = task_name.split(":")[2]
+
+        theme_base_path = `bundle show --paths bullet_train-themes-#{theme_name}`.chomp
+        `find app/views/themes/#{args[:theme]} | grep html.erb`.lines.map(&:chomp).each do |path|
+          _, file = path.split("app/views/themes/#{args[:theme]}/")
+          original_theme_path = "#{theme_base_path}/app/views/themes/#{theme_name}/#{file}"
+          if File.read(path) == File.read(original_theme_path)
+            puts "No changes in \`#{path}\` since being ejected. Removing."
+            `rm #{path}`
+          end
+        end
+      end
     end
   end
 end
