@@ -120,6 +120,7 @@ module BulletTrain
         puts "You may have to wait for some time until the gem can be downloaded via the Gemfile.".blue
         puts "After a few minutes, run the following command in your main application:".blue
         puts "bundle add bullet_train-themes-#{args[:theme_name]}"
+        puts "rake bullet_train:themes:#{args[:theme_name]}:install"
         puts ""
         puts "Then you'll be ready to use your custom gem in your Bullet Train application.".blue
       end
