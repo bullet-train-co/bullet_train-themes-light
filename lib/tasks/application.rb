@@ -1,7 +1,7 @@
 module BulletTrain
   module Themes
     module Application
-      def eject_theme(task_name, ejected_theme_name)
+      def self.eject_theme(task_name, ejected_theme_name)
         theme_name = task_name.split(":")[2]
         theme_parts = theme_name.humanize.split.map {|str| str.capitalize }
         constantized_theme = theme_parts.join
@@ -58,7 +58,7 @@ module BulletTrain
         puts "You must restart `bin/dev` at this point, because of the changes to `Procfile.dev` and `package.json`."
       end
 
-      def install_theme(task_name)
+      def self.install_theme(task_name)
         # Grab the theme name from the rake task, bullet_train:theme:light:install
         theme_name = task_name.split(":")[2]
 

@@ -1,12 +1,11 @@
 require 'tasks/application'
-include BulletTrain::Themes::Application
 
 namespace :bullet_train do
   namespace :themes do
     namespace :light do
       desc "Fork the \"Light\" theme into your local repository."
       task :eject, [:destination] => :environment do |task, args|
-        eject_theme(task.name, args[:destination])
+        BulletTrain::Themes::Application.eject_theme(task.name, args[:destination])
       end
 
       desc "Publish your custom theme theme as a Ruby gem."
@@ -74,7 +73,7 @@ namespace :bullet_train do
 
       desc "Install this theme to your main application."
       task :install do |task|
-        install_theme(task.name)
+        BulletTrain::Themes::Application.install_theme(task.name)
       end
 
       def ask(string)
