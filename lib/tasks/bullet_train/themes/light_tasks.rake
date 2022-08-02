@@ -5,7 +5,7 @@ namespace :bullet_train do
     namespace :light do
       desc "Fork the \"Light\" theme into your local repository."
       task :eject, [:destination] => :environment do |task, args|
-        BulletTrain::Themes::Application.eject_theme(task.name, args[:destination])
+        BulletTrain::Themes::Application.eject_theme(get_theme_name_from_task(task), args[:destination])
       end
 
       desc "Publish your custom theme theme as a Ruby gem."
@@ -73,7 +73,7 @@ namespace :bullet_train do
 
       desc "Install this theme to your main application."
       task :install do |task|
-        BulletTrain::Themes::Application.install_theme(task.name)
+        BulletTrain::Themes::Application.install_theme(get_theme_name_from_task(task))
       end
 
       def ask(string)
@@ -83,7 +83,12 @@ namespace :bullet_train do
 
       desc "List view partials in theme that haven't changed since ejection from \"Light\"."
       task :clean, [:theme] => :environment do |task, args|
-        BulletTrain::Themes::Application.clean_theme(task.name, args)
+        BulletTrain::Themes::Application.clean_theme(get_theme_name_from_task(task), args)
+      end
+
+      # Grabs the theme name from task, i.e. - bullet_train:theme:light:eject.
+      def get_theme_name_from_task(task)
+        task.name.split(":")[2]
       end
     end
   end
