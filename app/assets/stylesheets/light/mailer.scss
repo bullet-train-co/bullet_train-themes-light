@@ -1,5 +1,15 @@
 // TODO there is a ton of duplicate here that we can clean up!
 
+$bullet-train-blue: #047BF8;
+$bullet-train-white: #F6F7F8;
+$bullet-train-white-variant: #EDEFF2;
+$bullet-train-gray: #bbbfc3;
+$bullet-train-solid-gray: #AAAAAA;
+$bullet-train-dark-gray: #9BA2AB;
+$bullet-train-black: #3E4B5B;
+$bullet-train-green: #22BC66;
+$bullet-train-red: #FF6136;
+
 *:not(br):not(tr):not(html) {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   box-sizing: border-box;
@@ -10,8 +20,8 @@ body {
   height: 100%;
   margin: 0;
   line-height: 1.4;
-  background-color: #F6F7F8;
-  color: #3E4B5B;
+  background-color: $bullet-train-white;
+  color: $bullet-train-black;
   font-size: 16px;
   -webkit-text-size-adjust: none;
 }
@@ -25,7 +35,7 @@ blockquote {
 }
 
 a {
-  color: #047BF8;
+  color: $bullet-train-blue;
 }
 
 a img {
@@ -37,7 +47,7 @@ a img {
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: #F6F7F8;
+  background-color: $bullet-train-white;
 }
 
 .email-content {
@@ -59,7 +69,7 @@ a img {
 .email-masthead_name {
   font-size: 16px;
   /*font-weight: bold;*/
-  color: #bbbfc3;
+  color: $bullet-train-gray;
   text-decoration: none;
   /*text-shadow: 0 1px 0 white;*/
 }
@@ -69,8 +79,8 @@ a img {
   width: 100%;
   margin: 0;
   padding: 0;
-  border-top: 1px solid #EDEFF2;
-  border-bottom: 1px solid #EDEFF2;
+  border-top: 1px solid $bullet-train-white-variant;
+  border-bottom: 1px solid $bullet-train-white-variant;
   background-color: #FFFFFF;
 
 }
@@ -90,7 +100,7 @@ a img {
 }
 
 .email-footer p {
-  color: #AAAAAA;
+  color: $bullet-train-solid-gray;
 }
 
 .body-action {
@@ -103,7 +113,7 @@ a img {
 .body-sub {
   margin-top: 25px;
   padding-top: 25px;
-  border-top: 1px solid #EDEFF2;
+  border-top: 1px solid $bullet-train-white-variant;
 }
 
 .content-cell {
@@ -120,7 +130,7 @@ a img {
 }
 
 .attributes_content {
-  background-color: #EDEFF2;
+  background-color: $bullet-train-white-variant;
   padding: 16px;
 }
 
@@ -137,7 +147,7 @@ a img {
 
 .related_item {
   padding: 10px 0;
-  color: #3E4B5B;
+  color: $bullet-train-black;
   font-size: 15px;
   line-height: 18px;
 }
@@ -153,7 +163,7 @@ a img {
 }
 
 .related_heading {
-  border-top: 1px solid #EDEFF2;
+  border-top: 1px solid $bullet-train-white-variant;
   text-align: center;
   padding: 25px 0 10px;
 }
@@ -163,8 +173,8 @@ a img {
   width: 100%;
   margin: 0;
   padding: 24px;
-  background-color: #EDEFF2;
-  border: 2px dashed #9BA2AB;
+  background-color: $bullet-train-white-variant;
+  border: 2px dashed $bullet-train-dark-gray;
 }
 
 .discount_heading {
@@ -207,7 +217,7 @@ a img {
 
 .purchase_item {
   padding: 10px 0;
-  color: #3E4B5B;
+  color: $bullet-train-black;
   font-size: 15px;
   line-height: 18px;
 }
@@ -219,20 +229,20 @@ a img {
 
 .purchase_heading p {
   margin: 0;
-  color: #9BA2AB;
+  color: $bullet-train-dark-gray;
   font-size: 12px;
 }
 
 .purchase_footer {
   padding-top: 15px;
-  border-top: 1px solid #EDEFF2;
+  border-top: 1px solid $bullet-train-white-variant;
 }
 
 .purchase_total {
   margin: 0;
   text-align: right;
   /*font-weight: bold;*/
-  color: #3E4B5B;
+  color: $bullet-train-black;
 }
 
 .purchase_total--label {
@@ -268,11 +278,11 @@ a img {
 /* Buttons ------------------------------ */
 
 .button {
-  background-color: #047BF8;
-  border-top: 10px solid #047BF8;
-  border-right: 18px solid #047BF8;
-  border-bottom: 10px solid #047BF8;
-  border-left: 18px solid #047BF8;
+  background-color: $bullet-train-blue;
+  border-top: 10px solid $bullet-train-blue;
+  border-right: 18px solid $bullet-train-blue;
+  border-bottom: 10px solid $bullet-train-blue;
+  border-left: 18px solid $bullet-train-blue;
   display: inline-block;
   color: #FFF;
   text-decoration: none;
@@ -290,7 +300,7 @@ a img {
   border-bottom: 10px solid transparent;
   border-left: 18px solid transparent;
   display: inline-block;
-  color: #047BF8;
+  color: $bullet-train-blue;
   text-decoration: underline;
   border-radius: 3px;
   /*box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);*/
@@ -298,25 +308,25 @@ a img {
 }
 
 .button--green {
-  background-color: #22BC66;
-  border-top: 10px solid #22BC66;
-  border-right: 18px solid #22BC66;
-  border-bottom: 10px solid #22BC66;
-  border-left: 18px solid #22BC66;
+  background-color: $bullet-train-green;
+  border-top: 10px solid $bullet-train-green;
+  border-right: 18px solid $bullet-train-green;
+  border-bottom: 10px solid $bullet-train-green;
+  border-left: 18px solid $bullet-train-green;
 }
 
 .button--red {
-  background-color: #FF6136;
-  border-top: 10px solid #FF6136;
-  border-right: 18px solid #FF6136;
-  border-bottom: 10px solid #FF6136;
-  border-left: 18px solid #FF6136;
+  background-color: $bullet-train-red;
+  border-top: 10px solid $bullet-train-red;
+  border-right: 18px solid $bullet-train-red;
+  border-bottom: 10px solid $bullet-train-red;
+  border-left: 18px solid $bullet-train-red;
 }
 /* Type ------------------------------ */
 
 h1 {
   margin-top: 0;
-  color: #3E4B5B;
+  color: $bullet-train-black;
   font-size: 19px;
   font-weight: bold;
   text-align: left;
@@ -324,7 +334,7 @@ h1 {
 
 h2 {
   margin-top: 0;
-  color: #3E4B5B;
+  color: $bullet-train-black;
   font-size: 16px;
   font-weight: bold;
   text-align: left;
@@ -332,7 +342,7 @@ h2 {
 
 h3 {
   margin-top: 0;
-  color: #3E4B5B;
+  color: $bullet-train-black;
   font-size: 14px;
   font-weight: bold;
   text-align: left;
@@ -340,7 +350,7 @@ h3 {
 
 p {
   margin-top: 0;
-  color: #3E4B5B;
+  color: $bullet-train-black;
   font-size: 16px;
   line-height: 1.5em;
   text-align: left;
