@@ -178,6 +178,10 @@
 
   .pagy-nav .page.active,
   .pagy-nav-js .page.active {
-    @apply button;
+     @apply shadow-sm text-white hover:text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 hover:no-underline;
+
+    &.button-red {
+      @apply bg-red-500 hover:bg-red-600 focus:ring-red-600;
+    }
   }
 }
