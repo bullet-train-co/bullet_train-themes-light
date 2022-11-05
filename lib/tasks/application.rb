@@ -45,7 +45,7 @@ module BulletTrain
           view_path = debased_view.split("/")
           view_path.pop
           dir_to_create = "#{Rails.root}#{view_path.join("/")}"
-          FileUtils.mkdir_p(dir_to_create) unless Dir.exists?(dir_to_create)
+          FileUtils.mkdir_p(dir_to_create) unless Dir.exist?(dir_to_create)
           `cp -R #{bt_base_path}#{debased_view} #{Rails.root}#{debased_view}`
         end
 
