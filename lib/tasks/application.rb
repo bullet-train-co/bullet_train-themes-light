@@ -30,25 +30,6 @@ module BulletTrain
         `cp -R #{theme_base_path}/app/views/themes/#{theme_name} #{Rails.root}/app/views/themes/#{ejected_theme_name}`
         %x(sed -i #{'""' if `echo $OSTYPE`.include?("darwin")} "s/#{theme_name}/#{ejected_theme_name}/g" #{Rails.root}/app/views/themes/#{ejected_theme_name}/layouts/_head.html.erb)
 
-        # Eject files from `bullet_train-base`.
-        puts "Ejecting base theme templates into `app/views`"
-        bt_base_path = `bundle show --paths bullet_train`.chomp
-        bt_base_views = Dir.glob("#{bt_base_path}/app/views/**/*.html.erb")
-        views_to_ignore = [
-          "/app/views/bullet_train/partial_resolver.html.erb"
-        ]
-
-        bt_base_views.each do |view|
-          debased_view = view.gsub(bt_base_path, "")
-          next if views_to_ignore.include?(debased_view)
-
-          view_path = debased_view.split("/")
-          view_path.pop
-          dir_to_create = "#{Rails.root}#{view_path.join("/")}"
-          FileUtils.mkdir_p(dir_to_create) unless Dir.exist?(dir_to_create)
-          `cp -R #{bt_base_path}#{debased_view} #{Rails.root}#{debased_view}`
-        end
-
         # Eject files from `bullet_train-themes-tailwind_css`.
         puts "Ejecting Tailwind CSS templates into `app/views/themes/tailwind_css/`."
         tailwind_css_path = `bundle show --paths bullet_train-themes-tailwind_css`.chomp
