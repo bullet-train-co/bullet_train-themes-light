@@ -3,17 +3,17 @@
   <head>
     <%= render 'shared/layouts/head' %>
   </head>
-  <body class="bg-light-gradient text-gray-700 text-sm font-normal dark:bg-dark-gradient dark:text-darkPrimary-300">
+  <body class="bg-gradient-to-br from-blue-400 via-sky-300 to-emerald-100 text-gray-700 text-sm font-normal dark:bg-dark-gradient dark:text-darkPrimary-300 ">
     <div class="p-4 bg-primary-900 electron-draggable electron-title-bar hidden electron-mobile-only"></div>
-    <div class="md:p-5 main-container-padding">
-      <div class="h-screen md:h-auto overflow-hidden md:rounded-lg flex shadow main-container"
+    <div class="md:p-5 main-container-padding  ">
+      <div class="h-screen md:h-auto overflow-hidden md:rounded-lg flex shadow-md main-container "
         data-controller="mobile-menu"
         data-mobile-menu-hidden-class="hidden"
       >
 
         <% menu = capture do %>
-          <div class="flex items-center flex-shrink-0 p-4 bg-primary-900 md:rounded-tl-lg electron-draggable electron-title-bar dark:bg-black dark:bg-opacity-10">
-            <%= image_tag image_path("logo/logo.png"), class: 'h-5 w-auto mx-auto' %>
+          <div class="flex items-center flex-shrink-0 p-4 bg-white md:rounded-tl-lg electron-draggable electron-title-bar dark:bg-black dark:bg-opacity-10">
+            <%= image_tag image_path("logo/logo.png"), class: ' w-auto mx-auto' %>
 
             <div class="lg:hidden absolute right-0">
               <button class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white dark:ring-transparent"
