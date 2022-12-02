@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="theme-<%= BulletTrain::Themes::Light.color %>">
+<html class="theme-<%= BulletTrain::Themes::Light.color %> theme-secondary-<%= BulletTrain::Themes::Light.secondary_color || BulletTrain::Themes::Light.color %>">
   <head>
     <%= render 'shared/layouts/head' %>
   </head>
@@ -39,7 +39,7 @@
                     <div class="text-white">
                       <%= current_user.name %>
                     </div>
-                    <div class="text-2xs tracking-widest uppercase text-primary-300 group-hover:text-white dark:text-gray-500">
+                    <div class="text-2xs tracking-widest uppercase text-secondary-300 group-hover:text-white dark:text-gray-500">
                       <%= current_team.name %>
                     </div>
                   </div>
