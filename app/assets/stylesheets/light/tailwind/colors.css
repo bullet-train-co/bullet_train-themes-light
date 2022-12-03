@@ -230,3 +230,26 @@
   --secondary-800: var(--theme-pink-800);
   --secondary-900: var(--theme-pink-900);
 }
+
+/* This isn't intended for use by any userland applications. */
+/* We do this strictly to avoid shipping different color versions of our logo. */
+/* This is disabled by default in new applications. */
+.theme-logo-color-shift {
+  &.theme-pink {
+    img.theme-logo {
+      filter: hue-rotate(105deg) brightness(0.9);
+    }
+  }
+
+  &.theme-purple {
+    img.theme-logo {
+      filter: hue-rotate(33deg) brightness(0.9);
+    }
+  }
+
+  &.theme-orange {
+    img.theme-logo {
+      filter: hue-rotate(160deg) brightness(1.10);
+    }
+  }
+}
