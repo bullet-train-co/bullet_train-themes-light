@@ -13,6 +13,11 @@ namespace :bullet_train do
         BulletTrain::Themes::Application.release_theme(get_theme_name_from_task(task), args)
       end
 
+      desc "Install this theme to your main application."
+      task :install do |task|
+        BulletTrain::Themes::Application.install_theme(get_theme_name_from_task(task))
+      end
+
       desc "List view partials in theme that haven't changed since ejection from \"Light\"."
       task :clean, [:theme] => :environment do |task, args|
         BulletTrain::Themes::Application.clean_theme(get_theme_name_from_task(task), args)
