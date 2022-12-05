@@ -92,7 +92,7 @@ module BulletTrain
         puts ""
         puts "When you're done, copy the SSH path from the new repository and return here.".blue
         ask "We'll ask you to paste it to us in the next step."
-        `#{(Gem::Platform.local.os == "linux") ? "xdg-open" : "open"} https://github.com/new`
+        `#{Gem::Platform.local.os == "linux" ? "xdg-open" : "open"} https://github.com/new`
 
         ssh_path = ask "OK, what was the SSH path? (It should look like `git@github.com:your-account/your-new-repo.git`.)"
         puts ""
